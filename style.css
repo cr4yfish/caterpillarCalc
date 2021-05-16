@@ -1,0 +1,98 @@
+:root {
+    --darkBlack: #263238;
+    --lightBlue: #90A4AE;
+    --mediumBlack: #2E2E2E;
+    --grey: #D5D5D5;
+    --white: #FFFFFF;
+    --darkGrey: #707070;
+}
+
+html, body {
+    overflow-x: hidden;
+    background-color: var(--darkBlack);
+    min-height: 100vh;
+}
+
+.contentWrapper {
+    position: relative;
+    margin-left: 20%;
+    margin-top: 10%;
+    width: 60%;
+}
+
+#calcWrapper {
+    left: 25%;
+    position: relative;
+    width: 50%;
+    height: fit-content;
+    display: block;
+}
+
+.listEntry {
+    margin-top: 2rem;
+    position: inherit;
+    display: block;
+    width: 100%;
+    height: fit-content
+}
+
+.listEntryName, .listEntryUEC {
+    width: fit-content;
+    height: fit-content;
+}
+
+.listEntryUEC {
+    float: right;
+}
+
+.smallHeader {
+    color: var(--darkGrey);
+    font-size: 1rem;
+}
+
+.listEntryUEC {
+    display: inline-flex;
+}
+
+.listEntryInput {
+    background: none;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    
+}
+
+input.listEntryInput {
+    appearance: auto;
+    cursor: text;
+    word-spacing: normal;
+    letter-spacing: normal;
+    text-transform: none;
+}
+
+input.listEntryInput::-webkit-outer-spin-button, input.listEntryInput::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input.listEntryInput[type=number] {
+    -moz-appearance: none;
+}
+
+.btn {
+    margin-top: 5rem;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    position: relative;
+    border-radius: 1rem;
+    background-color: var(--lightBlue);
+    color: var(--mediumBlack);
+    padding: 0.25rem 1rem 0.25rem 1rem;
+    font-size: 1rem;
+    outline: none;
+    border: none;
+} 
+
+.btn-primary {
+    position: inherit;
+}
