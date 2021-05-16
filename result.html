@@ -9,13 +9,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="style.css">
     </head>
-    <body>
+    
+    <body onload="checkBuyable();">
 
         <div class="contentWrapper">
 
-            <span>Reicht es für eine Caterpillar</span>
-            <div>Nein</div>
-            
+            <span class="smallHeader isEnough">Is it enough for a Caterpillar?</span>
+
+            <div id="resultPrint">Nein</div>
+
+            <span class="smallHeader" id="restAmount"></span>
+
+            <button class="btn btn-primary" onclick="back();">back</button>
+
         </div>
 
         

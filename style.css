@@ -13,10 +13,10 @@ html, body {
     min-height: 100vh;
 }
 
-.contentWrapper {
+#contentWrapper {
     position: relative;
     margin-left: 20%;
-    margin-top: 10%;
+    margin-top: 15%;
     width: 60%;
 }
 
@@ -39,19 +39,17 @@ html, body {
 .listEntryName, .listEntryUEC {
     width: fit-content;
     height: fit-content;
+    color: var(--white);
 }
 
 .listEntryUEC {
     float: right;
+    display: inline-flex;
 }
 
 .smallHeader {
     color: var(--darkGrey);
     font-size: 1rem;
-}
-
-.listEntryUEC {
-    display: inline-flex;
 }
 
 .listEntryInput {
@@ -62,24 +60,8 @@ html, body {
     
 }
 
-input.listEntryInput {
-    appearance: auto;
-    cursor: text;
-    word-spacing: normal;
-    letter-spacing: normal;
-    text-transform: none;
-}
-
-input.listEntryInput::-webkit-outer-spin-button, input.listEntryInput::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-input.listEntryInput[type=number] {
-    -moz-appearance: none;
-}
-
 .btn {
+    cursor: pointer;
     margin-top: 5rem;
     margin-left: 50%;
     transform: translateX(-50%);
@@ -93,6 +75,51 @@ input.listEntryInput[type=number] {
     border: none;
 } 
 
+.btn:hover {
+    background-color: var(--grey);
+}
+
+
 .btn-primary {
     position: inherit;
+}
+
+/* popup */
+
+#resultPrint {
+    position: relative;
+    text-align: center;
+    color: var(--white);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-decoration: underline;
+}
+
+.isEnough {
+    font-size: 1.25rem;
+    margin-top: 3rem;
+}
+
+.isEnough, #restAmount {
+    margin-bottom: 1rem;
+    display: block;
+    position: relative;
+    text-align: center;
+    color: var(--darkBlack) !important;
+}
+
+#resultWrapper {
+    z-index: 1;
+    position: absolute;
+    background-color: var(--darkGrey);
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.308);
+    border-radius: 1rem;
+    width: 100%;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#resultWrapper .btn {
+    margin-top: 1rem !important;
 }
