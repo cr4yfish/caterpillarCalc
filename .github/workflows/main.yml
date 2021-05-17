@@ -41,5 +41,5 @@ jobs:
           # 
           localDir: /
           # 
-          remoteDir: /
+          remoteDir: /caterpillarCalc/
           # 
