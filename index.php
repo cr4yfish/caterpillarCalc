@@ -27,7 +27,19 @@
     if($con->connect_error) {
         die("SQL Connection failed!");
     }
-    echo "SQL Connected";
+
+    $sql = "SELECT * FROM `moneten`";
+    $result = mysqli_query($con, $sql);
+
+        echo "Continued with data";
+        echo $result;
+        echo mysqli_fetch_assoc($result);
+
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo $row['USER'];
+            echo $row['MONEY'] . "<br>";
+        }
+
 
     ?>
 
