@@ -5,6 +5,7 @@
     --grey: #D5D5D5;
     --white: #FFFFFF;
     --darkGrey: #707070;
+    --darkerBlue: #435761;
 }
 
 html, body {
@@ -15,15 +16,14 @@ html, body {
 
 #contentWrapper {
     position: relative;
-    margin-left: 20%;
-    margin-top: 15%;
-    width: 60%;
+    margin-left: 25%;
+    margin-top: 10%;
+    width: 50%;
 }
 
 #calcWrapper {
-    left: 25%;
     position: relative;
-    width: 50%;
+    width: 100%;
     height: fit-content;
     display: block;
 }
@@ -36,11 +36,23 @@ html, body {
     height: fit-content
 }
 
+.listEntry:last-of-type {
+    align-self: center;
+    margin-top: 5rem;
+    background-color: var(--darkerBlue);
+    color: white;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
 .listEntryName, .listEntryUEC {
     width: fit-content;
     height: fit-content;
     color: var(--white);
+    font-size: 2rem;
 }
+
+
 
 .listEntryUEC {
     float: right;
@@ -57,7 +69,35 @@ html, body {
     text-decoration: none;
     outline: none;
     border: none;
-    
+    text-align: right;
+    width: 50%;
+}
+
+#together {
+    display: block;
+    position: relative;
+    float: right;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+
+}
+
+.spacer {
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    position: relative;
+    height: 1px;
+    width: 50%;
+    background-color: var(--darkerBlue);
+    border-radius: 1rem;
 }
 
 .btn {
