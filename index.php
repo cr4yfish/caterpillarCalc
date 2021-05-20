@@ -76,7 +76,7 @@
                 </div>
             </div>
 
-            <button class="biloLight btn btn-primary" onclick="nextExec();">next</button>
+            <button id="nextBTN" class="biloLight btn btn-primary" onclick="nextExec();">next</button>
 
         </div>
         

@@ -41,6 +41,10 @@ async function drawElements() {
     // get rid of the Wrapper so it doesnt interfere
     calcWrapperElement.style.display = "none";
 
+    // get rid of the next btn
+    var nextbtnElement = document.getElementById("nextBTN");
+    nextbtnElement.style.display = "none";
+
     // prepare result wrapper for fade-in
     resultWrapperElement.style.opacity = "0";
 
@@ -63,8 +67,9 @@ async function drawElements() {
     await sleep(251);
 }
 
-function nextExec() {
+async function nextExec() {
 
+    
     var valuesHTMLcollection = document.getElementsByClassName("inputCheck");
     var playerAmount = 0;
 
@@ -74,14 +79,26 @@ function nextExec() {
 
         playerAmount = playerAmount + tempAmount;
     }
+
     
+
     if(playerAmount >= catPrice) {
+
         drawElements();
-        document.getElementById("resultPrint").textContent = "Yes";
+        await sleep(500);
+        var resultPrintElement = document.getElementById("resultPrint");
+        resultPrintElement.style.opacity = "0";
+        resultPrintElement.textContent = "Yes";
+        resultPrintElement.style.opacity = "1";
 
     } else {
         drawElements();
-        document.getElementById("resultPrint").textContent = "No";
+        await sleep(500);
+        var resultPrintElement = document.getElementById("resultPrint");
+        resultPrintElement.style.opacity = "0";
+        resultPrintElement.textContent = "No";
+        resultPrintElement.style.opacity = "1";
+        
         document.getElementById("restAmount").textContent = "Rest amount needed: " + (catPrice - playerAmount) + " aUEC";
 
     }
@@ -90,18 +107,36 @@ function nextExec() {
 async function back() {
 
     // get divs
+    var contentWrapperElement = document.getElementById("contentWrapper");
     var calcWrapperElement = document.getElementById("calcWrapper");
     var resultWrapperElement = document.getElementById("resultWrapper")
 
     // fade out result wrapper
     resultWrapperElement.style.opacity = "0";
 
+    // wait for transition to finish
+    await sleep(250);
 
     // fade in calc wrapper
     calcWrapperElement.style.opacity = "1";
+    calcWrapperElement.style.display = "block";
+
+    // fade in btn
+    var nextbtnElement = document.getElementById("nextBTN");
+
+    nextbtnElement.style.opacity = "0";
+    nextbtnElement.style.display = "inline-block";
+    nextbtnElement.style.opacity = "1";
+    
 
     // wait for transition to finish
     await sleep(250);
+
+    // adjust contentWrapper size
+    contentWrapperElement.style.width = "50%";
+    contentWrapperElement.style.marginLeft = "25%";
+    contentWrapperElement.style.height = "fit-content";
+    contentWrapperElement.style.marginTop = "10%";
 
     // remove HTML once faded out
     resultWrapperElement.remove();
