@@ -87,7 +87,7 @@ function nextExec() {
     }
 }
 
-function back() {
+async function back() {
 
     // get divs
     var calcWrapperElement = document.getElementById("calcWrapper");
