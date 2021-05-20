@@ -41,6 +41,8 @@ async function drawElements() {
     // adjust contentWrapper size
     contentWrapperElement.style.width = "80%";
     contentWrapperElement.style.marginLeft = "10%";
+    contentWrapperElement.style.height = "80vh";
+    contentWrapperElement.style.marginTop = "10vh";
 
     resultWrapperElement.appendChild(textHeader);
     resultWrapperElement.appendChild(resultPrintElement);
