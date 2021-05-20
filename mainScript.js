@@ -1,12 +1,26 @@
 var catPrice = 4686000;
 var togetherMoney;
 
+function sleep(ms) {
+    
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
-function drawElements() {
+async function drawElements() {
+
+    var calcWrapperElement = document.getElementById("calcWrapper");
+    calcWrapperElement.style.opacity = "0";
+    // wait for transition to finish
+    await sleep(250);
+    // get rid of the Wrapper so it doesnt interfere
+    calcWrapperElement.style.display = "none";
+
+    // generate HTML for resultWrapper
     var contentWrapperElement = document.getElementById("contentWrapper");
 
     var resultWrapperElement = document.createElement("div");
     resultWrapperElement.setAttribute("id", "resultWrapper");
+    resultWrapperElement.style.opacity = "0";
 
     var textHeader = document.createElement("span");
     textHeader.textContent = "Is it enough for a Caterpillar?";
@@ -24,12 +38,21 @@ function drawElements() {
     btnElement.setAttribute("onclick", "back();")
     btnElement.textContent = "back";
 
+    // adjust contentWrapper size
+    contentWrapperElement.style.width = "80%";
+    contentWrapperElement.style.marginLeft = "10%";
+
     resultWrapperElement.appendChild(textHeader);
     resultWrapperElement.appendChild(resultPrintElement);
     resultWrapperElement.appendChild(restAmountElement);
     resultWrapperElement.appendChild(btnElement);
 
     contentWrapperElement.prepend(resultWrapperElement);
+
+    // fade in
+    resultWrapperElement.style.opacity = 1;
+    // wait for transition for finish
+    await sleep(251);
 }
 
 function nextExec() {
