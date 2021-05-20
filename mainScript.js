@@ -9,18 +9,14 @@ function sleep(ms) {
 async function drawElements() {
 
     var calcWrapperElement = document.getElementById("calcWrapper");
-    calcWrapperElement.style.opacity = "0";
-    // wait for transition to finish
-    await sleep(250);
-    // get rid of the Wrapper so it doesnt interfere
-    calcWrapperElement.style.display = "none";
+
 
     // generate HTML for resultWrapper
     var contentWrapperElement = document.getElementById("contentWrapper");
 
     var resultWrapperElement = document.createElement("div");
     resultWrapperElement.setAttribute("id", "resultWrapper");
-    resultWrapperElement.style.opacity = "0";
+    
 
     var textHeader = document.createElement("span");
     textHeader.textContent = "Is it enough for a Caterpillar?";
@@ -38,6 +34,16 @@ async function drawElements() {
     btnElement.setAttribute("onclick", "back();")
     btnElement.textContent = "back";
 
+    // fade out calc wrapper
+    calcWrapperElement.style.opacity = "0";
+    // wait for transition to finish
+    await sleep(250);
+    // get rid of the Wrapper so it doesnt interfere
+    calcWrapperElement.style.display = "none";
+
+    // prepare result wrapper for fade-in
+    resultWrapperElement.style.opacity = "0";
+
     // adjust contentWrapper size
     contentWrapperElement.style.width = "80%";
     contentWrapperElement.style.marginLeft = "10%";
@@ -51,7 +57,7 @@ async function drawElements() {
 
     contentWrapperElement.prepend(resultWrapperElement);
 
-    // fade in
+    // fade in result wrapper
     resultWrapperElement.style.opacity = 1;
     // wait for transition for finish
     await sleep(251);
@@ -82,7 +88,24 @@ function nextExec() {
 }
 
 function back() {
-    document.getElementById("resultWrapper").remove();
+
+    // get divs
+    var calcWrapperElement = document.getElementById("calcWrapper");
+    var resultWrapperElement = document.getElementById("resultWrapper")
+
+    // fade out result wrapper
+    resultWrapperElement.style.opacity = "0";
+
+
+    // fade in calc wrapper
+    calcWrapperElement.style.opacity = "1";
+
+    // wait for transition to finish
+    await sleep(250);
+
+    // remove HTML once faded out
+    resultWrapperElement.remove();
+
 }
 
 
