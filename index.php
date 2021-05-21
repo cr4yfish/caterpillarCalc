@@ -14,7 +14,7 @@
 
     </head>
 
-    <body onload="loadDefaults();addListener();">
+    <body onload="loadDefaults();addListener();addDotsMultipleElements();">
 
     <?php 
 
@@ -32,7 +32,28 @@
 
         <div id="contentWrapper">
 
+            <div id="resultWrapper">
+                <input id="resultSearch" type="search" placeholder="Search...">
+                <div id="innerWrapper">
+                    <div class="grid-container">
+                        <span class="biloLight listEntryName smallHeader">Ship</span>
+                        <span class="rightAlign biloLight listEntryUEC smallHeader">Price</span>
+                        <span class="rightAlign biloLight listEntryUEC smallHeader">Location</span>
+                        <span class="rightAlign biloLight listEntryUEC smallHeader">Rest</span>
+                        <?php while($row2 = mysqli_fetch_array($shipList)) { ?>
+                            <span class="pointer biloLight listEntryName resultGridName"> <?php echo $row2["shipName"]; ?> </span>
+                            <span class="rightAlign biloLight listEntryUEC resultGridPrice"> <?php echo $row2["shipPrice"]; ?> </span>
+                            <span class="rightAlign biloLight listEntryUEC "> <?php echo $row2["shipLocation"] ?> </span>
+                            <span class="rightAlign biloLight listEntryUEC resultGridRest">Pending</span>
+                        <?php
+                        } 
+                        ?>
+                    </div>
+                </div>
+                <button class="biloLight btn btn-primary" onclick="back();">back</button>
+            </div>
 
+            
             <div id="calcWrapper">
 
                 <div class="listEntry">
@@ -66,7 +87,7 @@
             </div>
 
             <button id="nextBTN" class="biloLight btn btn-primary" onclick="nextExec();">next</button>
-
+        
         </div>
         
         <script src="mainScript.js" async defer></script>

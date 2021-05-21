@@ -7,6 +7,26 @@
     --darkGrey: #707070;
     --darkerBlue: #435761;
     --foregroundDark: #37474F;
+    --highlight: #76C5EC;
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 15px;
+    margin-right: 2rem;
+  }
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: var(--darkBlack);
+  }
+::-webkit-scrollbar-thumb {
+    background-color:var(--lightBlue);
+    border-radius: 10px;
+}
+
+.pointer {
+    cursor: pointer;
 }
 
 ::selection {
@@ -51,7 +71,7 @@ html, body {
 
 .listEntry:last-of-type {
     margin-top: 5rem;
-    background-color: var(--darkerBlue);
+    background-color: var(--foregroundDark);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
     color: white;
     padding: 1rem;
@@ -146,7 +166,7 @@ input[type=number]::-webkit-outer-spin-button {
     position: inherit;
 }
 
-/* popup */
+/* result */
 
 #resultPrint {
     position: relative;
@@ -177,24 +197,79 @@ input[type=number]::-webkit-outer-spin-button {
 #resultWrapper {
     z-index: 1;
     position: absolute;
-    background-color: var(--foregroundDark);
-    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.308);
-    border-radius: 1rem;
     width: 0;
-    height: 75vh;
-    left: 50%;
+    height: 75%;
+    margin-left: 50%;
     transform: translateX(-50%);
     opacity: 0;
     transition: all 350ms;
+    
 }
 
 #resultWrapper .btn {
     margin-top: 1rem !important;
 }
 
-@media screen and (max-width: 800px) {
+#resultSearch {
+    width: 15rem;
+    position: relative;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 1rem;
+    background: none;
+    border: solid 3px var(--foregroundDark);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    color: var(--grey);
+}
+#resultSearch:focus {
+    outline: none;
+    border-color: var(--darkerBlue);
+}
+
+
+#innerWrapper {
+    overflow: auto;
+    height: 90%;
+    background-color: var(--foregroundDark);
+    border-radius: 1rem;
+    transition: all 350ms;
+    opacity: inherit;
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.308);
+    padding: 2rem;
+}
+
+
+.grid-container {
+    width: 90%;
+    height: 100%;
+    margin-top: 1.5rem;
+    margin-left: 5%;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.3fr 0.9fr 0.9fr 0.9fr;
+    grid-template-rows: max-content;
+    gap: 1rem;
+    transition: all 350ms;
+    opacity: inherit;
+}
+
+.rightAlign {
+    display: block;
+    text-align: right;
+}
+
+
+.resultGridName:hover {
+    color: var(--highlight);
+}
+
+  @media screen and (max-width: 800px) {
     #contentWrapper {
-        width: 80%;
+        margin-left: 2.5%;
+        width: 95%;
+
     }
     .listEntryName, .listEntryUEC {
         font-size: 1rem;

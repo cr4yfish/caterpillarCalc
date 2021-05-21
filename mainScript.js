@@ -9,57 +9,25 @@ function sleep(ms) {
 async function drawElements() {
 
     var calcWrapperElement = document.getElementById("calcWrapper");
+    var resultWrapperElement = document.getElementById("resultWrapper");
 
-
-    // generate HTML for resultWrapper
-    var contentWrapperElement = document.getElementById("contentWrapper");
-
-    var resultWrapperElement = document.createElement("div");
-    resultWrapperElement.setAttribute("id", "resultWrapper");
-    
-
-    var textHeader = document.createElement("span");
-    textHeader.textContent = "Is it enough for a Caterpillar?";
-    textHeader.setAttribute("class", "biloLight smallHeader isEnough");
-
-    var resultPrintElement = document.createElement("div");
-    resultPrintElement.setAttribute("id", "resultPrint");
-
-    var restAmountElement = document.createElement("span");
-    restAmountElement.setAttribute("id", "restAmount");
-    restAmountElement.setAttribute("class", "biloLight smallHeader");
-
-    var btnElement = document.createElement("button");
-    btnElement.setAttribute("class", "biloLight btn btn-primary");
-    btnElement.setAttribute("onclick", "back();")
-    btnElement.textContent = "back";
-
-    // attach result wrapper (not visible)
-    resultWrapperElement.appendChild(textHeader);
-    resultWrapperElement.appendChild(resultPrintElement);
-    resultWrapperElement.appendChild(restAmountElement);
-    resultWrapperElement.appendChild(btnElement);
-
-    contentWrapperElement.prepend(resultWrapperElement);
-    resultWrapperElement.style.opacity = 1;
     // fade out calc wrapper animation
-    calcWrapperElement.style.width = "0"
-    await sleep(10);
     calcWrapperElement.style.opacity = "0";
+    calcWrapperElement.style.width = "0%"
+
+    var nextbtnElement = document.getElementById("nextBTN");
+    nextbtnElement.style.opacity = "0";
+    await sleep(200);
 
     // fade in result wrapper animation
+    resultWrapperElement.style.opacity = 1;
     resultWrapperElement.style.width = "100%";
     
-    
     // wait for possible transitions for finish
-    await sleep(251);
+    await sleep(250);
 
-    // get rid of the Wrapper so it doesnt interfere
+    // get rid of stuff so it doesn't interfere
     calcWrapperElement.style.display = "none";
-
-    // get rid of the "next" btn
-    nextbtnElement.style.opacity = "0";
-    var nextbtnElement = document.getElementById("nextBTN");
     nextbtnElement.style.display = "none";
 }
 
@@ -79,24 +47,10 @@ async function nextExec() {
     
 
     if(playerAmount >= catPrice) {
-
         drawElements();
-        await sleep(150);
-        var resultPrintElement = document.getElementById("resultPrint");
-        resultPrintElement.style.opacity = "0";
-        resultPrintElement.textContent = "Yes";
-        resultPrintElement.style.opacity = "1";
 
     } else {
         drawElements();
-        await sleep(150);
-        var resultPrintElement = document.getElementById("resultPrint");
-        resultPrintElement.style.opacity = "0";
-        resultPrintElement.textContent = "No";
-        resultPrintElement.style.opacity = "1";
-        
-        document.getElementById("restAmount").textContent = "Rest amount needed: " + (catPrice - playerAmount) + " aUEC";
-
     }
 }
 
@@ -106,6 +60,7 @@ async function back() {
     var calcWrapperElement = document.getElementById("calcWrapper");
     var resultWrapperElement = document.getElementById("resultWrapper")
     var nextbtnElement = document.getElementById("nextBTN");
+
 
     // fade out result wrapper
     resultWrapperElement.style.width = "0";
@@ -118,7 +73,7 @@ async function back() {
     await sleep(100);
     resultWrapperElement.style.opacity = "0";
     // fade in calc wrapper
-    calcWrapperElement.style.width = "100%"
+    calcWrapperElement.style.width = "60%"
     
     // fade in btn
     nextbtnElement.style.display = "inline-block";
@@ -126,9 +81,6 @@ async function back() {
     
     // wait for transition to finish
     await sleep(250);
-
-    // remove HTML once faded out
-    resultWrapperElement.remove();
 
 }
 
@@ -182,6 +134,8 @@ function managePrices() {
     let finalVal = ele.match(/.{1,3}(?=(.{3})*$)/g).join('.');
     togetherElement.textContent = finalVal;
 
+    // calculate new rest amounts
+    insertRestAmount();
 }
 
 function addDot(element) {
@@ -198,6 +152,26 @@ function addDot(element) {
     }
 }
 
+function addDotsMultipleElements() {
+
+    var eleCollection = document.getElementsByClassName("resultGridPrice");
+
+    for (i = 0; i < eleCollection.length; i++) {
+
+        var ele  = eleCollection[i].textContent.split(" ").join("");
+
+        if(ele != null) {
+    
+            let finalVal = ele.match(/.{1,3}(?=(.{3})*$)/g).join('.');
+            eleCollection[i].textContent = finalVal;
+
+        } else {
+            console.log("You just inserted a NULL @i=", i);
+        }
+    }
+
+}
+
 function loadDefaults() {
 
     var dataCollection = document.getElementsByClassName("sqlData");
@@ -210,6 +184,37 @@ function loadDefaults() {
   
     }
     managePrices();
-
 }
 
+function insertRestAmount() {
+    var resultGridPrice = document.getElementsByClassName("resultGridPrice");
+    var resultGridRest = document.getElementsByClassName("resultGridRest");
+
+    for (i = 0; i < resultGridPrice.length;i++) {
+        let shipPriceString = resultGridPrice[i].textContent.split(".").join("")
+        console.log("ShipPriceString ", shipPriceString);
+        shipPriceInt = parseInt(shipPriceString);
+        console.log("ShipPriceInt ", shipPriceInt);
+        console.log("togetherMoney ", togetherMoney);
+        resultGridRest[i].textContent =  togetherMoney - shipPriceInt;
+
+        if ( (togetherMoney - shipPriceInt) < 0) {
+            resultGridRest[i].style.color = "#E19A9A";
+        } else {
+            resultGridRest[i].style.color = "#79BF79";
+        }
+
+        resultGridRest[i].textContent;
+
+        let ele = resultGridRest[i].textContent;
+
+        ele = ele.split('.').join('');
+    
+        if(resultGridRest[i].textContent.match(/\d/g) != null) {
+    
+            let finalVal = ele.match(/.{1,3}(?=(.{3})*$)/g).join('.');
+            resultGridRest[i].textContent = finalVal + " aUEC";
+    
+        }
+    }
+}
