@@ -118,7 +118,7 @@ async function back() {
     await sleep(100);
     resultWrapperElement.style.opacity = "0";
     // fade in calc wrapper
-    calcWrapperElement.style.width = "60%"
+    calcWrapperElement.style.width = "100%"
     
     // fade in btn
     nextbtnElement.style.display = "inline-block";
