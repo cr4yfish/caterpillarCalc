@@ -34,37 +34,33 @@ async function drawElements() {
     btnElement.setAttribute("onclick", "back();")
     btnElement.textContent = "back";
 
-    // fade out calc wrapper
-    calcWrapperElement.style.opacity = "0";
-    // wait for transition to finish
-    await sleep(250);
-    // get rid of the Wrapper so it doesnt interfere
-    calcWrapperElement.style.display = "none";
-
-    // get rid of the next btn
-    var nextbtnElement = document.getElementById("nextBTN");
-    nextbtnElement.style.display = "none";
-
-    // prepare result wrapper for fade-in
-    resultWrapperElement.style.opacity = "0";
-
-    // adjust contentWrapper size
-    contentWrapperElement.style.width = "80%";
-    contentWrapperElement.style.marginLeft = "10%";
-    contentWrapperElement.style.height = "80vh";
-    contentWrapperElement.style.marginTop = "10vh";
-
+    // attach result wrapper (not visible)
     resultWrapperElement.appendChild(textHeader);
     resultWrapperElement.appendChild(resultPrintElement);
     resultWrapperElement.appendChild(restAmountElement);
     resultWrapperElement.appendChild(btnElement);
 
     contentWrapperElement.prepend(resultWrapperElement);
-
-    // fade in result wrapper
     resultWrapperElement.style.opacity = 1;
-    // wait for transition for finish
+    // fade out calc wrapper animation
+    calcWrapperElement.style.width = "0"
+    await sleep(10);
+    calcWrapperElement.style.opacity = "0";
+
+    // fade in result wrapper animation
+    resultWrapperElement.style.width = "100%";
+    
+    
+    // wait for possible transitions for finish
     await sleep(251);
+
+    // get rid of the Wrapper so it doesnt interfere
+    calcWrapperElement.style.display = "none";
+
+    // get rid of the "next" btn
+    nextbtnElement.style.opacity = "0";
+    var nextbtnElement = document.getElementById("nextBTN");
+    nextbtnElement.style.display = "none";
 }
 
 async function nextExec() {
@@ -85,7 +81,7 @@ async function nextExec() {
     if(playerAmount >= catPrice) {
 
         drawElements();
-        await sleep(500);
+        await sleep(150);
         var resultPrintElement = document.getElementById("resultPrint");
         resultPrintElement.style.opacity = "0";
         resultPrintElement.textContent = "Yes";
@@ -93,7 +89,7 @@ async function nextExec() {
 
     } else {
         drawElements();
-        await sleep(500);
+        await sleep(150);
         var resultPrintElement = document.getElementById("resultPrint");
         resultPrintElement.style.opacity = "0";
         resultPrintElement.textContent = "No";
@@ -107,36 +103,29 @@ async function nextExec() {
 async function back() {
 
     // get divs
-    var contentWrapperElement = document.getElementById("contentWrapper");
     var calcWrapperElement = document.getElementById("calcWrapper");
     var resultWrapperElement = document.getElementById("resultWrapper")
-
-    // fade out result wrapper
-    resultWrapperElement.style.opacity = "0";
-
-    // wait for transition to finish
-    await sleep(250);
-
-    // fade in calc wrapper
-    calcWrapperElement.style.opacity = "1";
-    calcWrapperElement.style.display = "block";
-
-    // fade in btn
     var nextbtnElement = document.getElementById("nextBTN");
 
-    nextbtnElement.style.opacity = "0";
+    // fade out result wrapper
+    resultWrapperElement.style.width = "0";
+    
+
+    calcWrapperElement.style.display = "block";
+    calcWrapperElement.style.opacity = "1";
+
+    // wait for transition
+    await sleep(100);
+    resultWrapperElement.style.opacity = "0";
+    // fade in calc wrapper
+    calcWrapperElement.style.width = "60%"
+    
+    // fade in btn
     nextbtnElement.style.display = "inline-block";
     nextbtnElement.style.opacity = "1";
     
-
     // wait for transition to finish
     await sleep(250);
-
-    // adjust contentWrapper size
-    contentWrapperElement.style.width = "50%";
-    contentWrapperElement.style.marginLeft = "25%";
-    contentWrapperElement.style.height = "fit-content";
-    contentWrapperElement.style.marginTop = "10%";
 
     // remove HTML once faded out
     resultWrapperElement.remove();
