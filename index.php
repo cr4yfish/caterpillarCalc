@@ -17,8 +17,8 @@
     <body onload="loadDefaults();addListener();">
 
     <?php 
-    
-        include_once "sqlconnection.php";
+
+    include 'sqlconnection.php';
 
     ?>
 
