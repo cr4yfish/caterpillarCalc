@@ -222,7 +222,9 @@ input[type=number]::-webkit-outer-spin-button {
     border-left: none;
     border-right: none;
     color: var(--grey);
+    padding: 0.5rem;
 }
+
 #resultSearch:focus {
     outline: none;
     border-color: var(--darkerBlue);
