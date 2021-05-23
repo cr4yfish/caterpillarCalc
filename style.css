@@ -80,16 +80,19 @@ html, body {
     transform: translateX(-50%);
 }
 
-.listEntryName, .listEntryUEC {
+.listEntryName, .listEntryUEC, .listEntryLocation {
     width: fit-content;
     height: fit-content;
     color: var(--white);
     font-size: 2rem;
 }
 
-
+.listEntryLocation {
+    color: var(--darkGrey);
+}
 
 .listEntryUEC {
+    color: var(--lightBlue);
     float: right;
     display: inline-flex;
 }
@@ -195,7 +198,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 #resultWrapper {
-    z-index: 1;
+    z-index: -1;
     position: absolute;
     width: 0;
     height: 75%;
@@ -273,7 +276,7 @@ input[type=number]::-webkit-outer-spin-button {
         width: 95%;
 
     }
-    .listEntryName, .listEntryUEC {
+    .listEntryName, .listEntryUEC, .listEntryLocation {
         font-size: 1rem;
     }
 }

@@ -30,6 +30,8 @@
         }
         ?>
 
+<?php echo $shipDatabase; ?>
+
         <div id="contentWrapper">
 
             <div id="resultWrapper">
@@ -41,10 +43,13 @@
                         <span class="rightAlign biloLight listEntryUEC smallHeader">Location</span>
                         <span class="rightAlign biloLight listEntryUEC smallHeader">Rest</span>
                         <?php while($row2 = mysqli_fetch_array($shipList)) { ?>
-                            <span class="pointer biloLight listEntryName resultGridName"> <?php echo $row2["shipName"]; ?> </span>
-                            <span class="rightAlign biloLight listEntryUEC resultGridPrice"> <?php echo $row2["shipPrice"]; ?> </span>
-                            <span class="rightAlign biloLight listEntryUEC "> <?php echo $row2["shipLocation"] ?> </span>
-                            <span class="rightAlign biloLight listEntryUEC resultGridRest">Pending</span>
+                            <?php if($row2["shipPrice"] >0) { ?>
+                                <span class="pointer biloLight listEntryName resultGridName"> <?php echo $row2["shipName"]; ?> </span>
+                                <span class="rightAlign biloLight listEntryUEC resultGridPrice"> <?php if ($row2["shipPrice"] >0) {echo $row2["shipPrice"];} else {echo "No Data";}  ?> </span>
+                                <span class="rightAlign biloLight listEntryLocation"> <?php echo $row2["shipLocation"] ?> </span>
+                                <span class="rightAlign biloLight listEntryUEC resultGridRest">Pending</span>
+                             <?php } ?>
+
                         <?php
                         } 
                         ?>

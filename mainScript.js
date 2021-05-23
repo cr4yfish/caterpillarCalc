@@ -20,6 +20,7 @@ async function drawElements() {
     await sleep(200);
 
     // fade in result wrapper animation
+    resultWrapperElement.style.zIndex = 1;
     resultWrapperElement.style.opacity = 1;
     resultWrapperElement.style.width = "100%";
     
@@ -39,7 +40,12 @@ async function nextExec() {
 
     for(i = 0; i < Array.from(valuesHTMLcollection).length; i++) {
 
-        let tempAmount = parseInt(valuesHTMLcollection[i].value.split(".").join("").match(/\d/g).join(''), 10);
+        if ( isNaN(parseInt(valuesHTMLcollection[i].value))  == false ) {
+            var tempAmount = parseInt(valuesHTMLcollection[i].value.split(".").join("").match(/\d/g).join(''), 10);
+        } else {
+            var tempAmount = 0;
+        }
+        
 
         playerAmount = playerAmount + tempAmount;
     }
@@ -64,8 +70,7 @@ async function back() {
 
     // fade out result wrapper
     resultWrapperElement.style.width = "0";
-    
-
+    resultWrapperElement.style.zIndex = "-1";
     calcWrapperElement.style.display = "block";
     calcWrapperElement.style.opacity = "1";
 
@@ -156,18 +161,23 @@ function addDotsMultipleElements() {
 
     var eleCollection = document.getElementsByClassName("resultGridPrice");
 
+
     for (i = 0; i < eleCollection.length; i++) {
 
-        var ele  = eleCollection[i].textContent.split(" ").join("");
 
-        if(ele != null) {
+        if (isNaN(parseInt(eleCollection[i].textContent)) == false) {
+            var ele  = eleCollection[i].textContent.split(" ").join("");
+
+            if(ele != null) {
+        
+                let finalVal = ele.match(/.{1,3}(?=(.{3})*$)/g).join('.');
+                eleCollection[i].textContent = finalVal;
     
-            let finalVal = ele.match(/.{1,3}(?=(.{3})*$)/g).join('.');
-            eleCollection[i].textContent = finalVal;
-
-        } else {
-            console.log("You just inserted a NULL @i=", i);
+            } else {
+                console.log("You just inserted a NULL @i=", i);
+            }
         }
+
     }
 
 }
@@ -190,31 +200,36 @@ function insertRestAmount() {
     var resultGridPrice = document.getElementsByClassName("resultGridPrice");
     var resultGridRest = document.getElementsByClassName("resultGridRest");
 
+    
     for (i = 0; i < resultGridPrice.length;i++) {
-        let shipPriceString = resultGridPrice[i].textContent.split(".").join("")
-        console.log("ShipPriceString ", shipPriceString);
-        shipPriceInt = parseInt(shipPriceString);
-        console.log("ShipPriceInt ", shipPriceInt);
-        console.log("togetherMoney ", togetherMoney);
-        resultGridRest[i].textContent =  togetherMoney - shipPriceInt;
 
-        if ( (togetherMoney - shipPriceInt) < 0) {
-            resultGridRest[i].style.color = "#E19A9A";
+        if (isNaN(parseInt(resultGridPrice[i].textContent)) == false) {
+
+            let shipPriceString = resultGridPrice[i].textContent.split(".").join("")
+            shipPriceInt = parseInt(shipPriceString);
+            resultGridRest[i].textContent =  togetherMoney - shipPriceInt;
+    
+            if ( (togetherMoney - shipPriceInt) < 0) {
+                resultGridRest[i].style.color = "#E19A9A";
+            } else {
+                resultGridRest[i].style.color = "#79BF79";
+            }
+    
+            resultGridRest[i].textContent;
+    
+            let ele = resultGridRest[i].textContent;
+    
+            ele = ele.split('.').join('');
+        
+            if(resultGridRest[i].textContent.match(/\d/g) != null) {
+        
+                let finalVal = ele.match(/.{1,3}(?=(.{3})*$)/g).join('.');
+                resultGridRest[i].textContent = finalVal + " aUEC";
+        
+            }
         } else {
-            resultGridRest[i].style.color = "#79BF79";
+            resultGridRest[i].textContent = "Not buyable";
         }
 
-        resultGridRest[i].textContent;
-
-        let ele = resultGridRest[i].textContent;
-
-        ele = ele.split('.').join('');
-    
-        if(resultGridRest[i].textContent.match(/\d/g) != null) {
-    
-            let finalVal = ele.match(/.{1,3}(?=(.{3})*$)/g).join('.');
-            resultGridRest[i].textContent = finalVal + " aUEC";
-    
-        }
     }
 }
