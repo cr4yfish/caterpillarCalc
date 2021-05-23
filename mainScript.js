@@ -220,6 +220,7 @@ function insertRestAmount() {
             let ele = resultGridRest[i].textContent;
     
             ele = ele.split('.').join('');
+            ele = ele.split('-').join('');
         
             if(resultGridRest[i].textContent.match(/\d/g) != null) {
         
