@@ -20,6 +20,7 @@
 
     include 'sqlconnection.php';
 
+
     ?>
 
     <?php while($row = mysqli_fetch_array($result)) { ?>
@@ -32,8 +33,50 @@
 
 <?php echo $shipDatabase; ?>
 
+        <form action="loginProcessing.php" method="POST" id="loginWrapper">
+
+            <span class="biloLight listEntryName" id="loginHeader">Login</span>
+
+            <div class="inputGroup">
+            <label class="biloLight" for="usernameInput">Username</label>
+            <input class="biloLight" id="usernameInput" name="username" type="text" required autocomplete="off">
+            </div>
+
+            <div class="inputGroup">
+            <label class="biloLight" for="passwordInput">Password</label>
+            <input class="biloLight" id="passwordInput" name="password" type="password" required autocomplete="off">
+            </div>
+            <button class="biloLight btn btn-primary" id="loginWrapperBTN" name="submit" type="submit">login</button>
+        </form>
+
+        <div id="opacityLayer"></div>
+
         <div id="contentWrapper">
 
+            <div id="accountWrapper">
+
+                <?php
+                    if(isset($_SESSION["username"])){
+
+                ?>
+                    <div id="upperAccountWrapper">
+                        <span>Logged in as <span id="accountName"><?php echo $_SESSION["username"]?></span></span>
+                    </div>
+                    <div id="lowerAccountWrapper">
+                        <div id="accountSpacer"></div>
+                        <button id="logoutBTN">Logout</button>
+                    </div>
+                </div>
+
+                <?php } else { ?>
+
+                    <div id="loginBTNWrapper">
+                        <button id="loginBTN" onclick="loginExec();">Login</button>
+                    </div>
+
+                <?php } ?>
+            </div>
+        
             <div id="resultWrapper">
                 <input id="resultSearch" type="search" placeholder="Search...">
                 <div id="innerWrapper">
