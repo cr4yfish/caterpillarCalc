@@ -281,4 +281,18 @@ input[type=number]::-webkit-outer-spin-button {
     .grid-container {
         margin-left: 0;
     }
+    .rightAlign {
+        text-align: left;
+    }
+    #innerWrapper {
+        padding: 0.5rem;
+        height: 100%;
+    }
+    #contentWrapper {
+        margin-top: 2vh;
+    }
+    #resultWrapper {
+        height: 90%;
+    }
+
 }
