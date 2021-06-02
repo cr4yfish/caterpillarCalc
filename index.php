@@ -67,7 +67,7 @@
                 </div>
 
                 <div class="listEntry">
-                    <span class="biloLight listEntryName">Anil</span>
+                    <span class="biloLight listEntryName">Anilcan</span>
                         <input maxlength="30"id="input1" onkeyup="addDot(this);" type="text" placeholder="aUEC amount"  class="inputCheck biloLight listEntryUEC listEntryInput">
                 </div>
 
