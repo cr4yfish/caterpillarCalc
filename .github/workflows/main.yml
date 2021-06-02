@@ -41,9 +41,9 @@ jobs:
           # 
           localDir: /
           # 
-          remoteDir: projects/caterpillarCalculator
+          remoteDir: /projects/caterpillarCalculator
           # 
-          dryRun: true # optional
+          dryRun: false # optional
           # 
           excludeMode: remove # optional, default is remove
           # 
