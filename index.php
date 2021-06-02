@@ -63,7 +63,7 @@
 
                 <div class="listEntry">
                     <span class="biloLight listEntryName smallHeader">Person</span>
-                    <span class="biloLight listEntryUEC smallHeader">aUEC</span>
+                    <span class="biloLight listEntryUEC smallHeader">UEC</span>
                 </div>
 
                 <div class="listEntry">
