@@ -49,6 +49,6 @@ jobs:
           # 
           forceUpload: false # optional
           # 
-          exclude: "[]" # optional, default is []
+          exclude: "['sqlconnection.php']" # optional, default is []
           # 
           concurrency: 100 # optional, default is 100
