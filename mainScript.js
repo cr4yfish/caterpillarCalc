@@ -234,15 +234,3 @@ function insertRestAmount() {
 
     }
 }
-
-function loginExec() {
-
-    var loginWrapper = document.createElement("form");
-    var loginHeader = document.createElement("span");
-    loginHeader.textContent = "Login";
-    loginHeader.setAttribute("id", "loginHeader");
-
-    var usernameInput = document.createElement("input");
-    var passwordInput = document.createElement("input");
-
-}
